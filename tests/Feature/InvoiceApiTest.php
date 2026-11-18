@@ -2,20 +2,7 @@
 
 use App\Enums\UserRole;
 use App\Models\Invoice;
-use App\Models\Tenant;
 use App\Models\User;
-use Laravel\Sanctum\Sanctum;
-
-function actingAsRole(UserRole $role): User
-{
-    $user = User::factory()
-        ->for(Tenant::factory()->create(['state_code' => '27']))
-        ->create(['role' => $role]);
-
-    Sanctum::actingAs($user);
-
-    return $user;
-}
 
 function validInvoicePayload(array $overrides = []): array
 {

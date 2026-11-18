@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Enums\InvoiceStatus;
+use App\Observers\InvoiceObserver;
 use App\Support\Tenancy\BelongsToTenant;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy(InvoiceObserver::class)]
 class Invoice extends Model
 {
     use BelongsToTenant, HasFactory;
