@@ -2,6 +2,11 @@
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Enums\UserRole;
+use App\Models\Tenant;
+use App\Models\User;
+use Laravel\Sanctum\Sanctum;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +52,15 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+function actingAsRole(UserRole $role): User
+{
+    $user = User::factory()
+        ->for(Tenant::factory()->create(['state_code' => '27']))
+        ->create(['role' => $role]);
+
+    Sanctum::actingAs($user);
+
+    return $user;
 }
