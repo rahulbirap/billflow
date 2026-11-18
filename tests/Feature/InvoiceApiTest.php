@@ -2,10 +2,7 @@
 
 use App\Enums\UserRole;
 use App\Models\Invoice;
-use App\Models\Tenant;
 use App\Models\User;
-use Laravel\Sanctum\Sanctum;
-
 
 function validInvoicePayload(array $overrides = []): array
 {
